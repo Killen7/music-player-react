@@ -75,12 +75,6 @@ export function Home() {
 			url: "files/videogame/songs/sonic_brain-zone.mp3"
 		},
 		{
-			id: 11,
-			category: "game",
-			name: "Zelda Link To Past",
-			url: "files/videogame/songs/zelda_link-to-past.mp3"
-		},
-		{
 			id: 12,
 			category: "game",
 			name: "Dong KinKong Main",
@@ -136,30 +130,115 @@ export function Home() {
 		}
 	]);
 
-	let video = useRef();
+	let audio = useRef();
 
-	const cambiarSrcVideo = () => {
-		video.current.src = "https://www.w3schools.com/html/mov_bbb.mp4";
+	const cambiarSrcAudio = url => {
+		let stringfijo = "https://assets.breatheco.de/apis/sound/";
+		audio.current.src = stringfijo + url;
 	};
 
-	const controlVideo = () => {
-		if (video.current.paused) {
-			video.current.play();
-		} else if (!video.current.paused) {
-			video.current.pause();
+	const controlAudio = () => {
+		if (audio.current.paused) {
+			audio.current.play();
+		} else if (!audio.current.paused) {
+			audio.current.pause();
 		}
 	};
 
 	return (
-		<>
-			<p>Mi contenido</p>
-			<audio
-				src="https://assets.breatheco.de/apis/sound/files/mario/songs/castle.mp3"
-				controls
-			/>
-			<video ref={video} src="https://www.w3schools.com/html/movie.mp4" />
-			<button onClick={cambiarSrcVideo}>Cambiar src de video</button>
-			<button onClick={controlVideo}>Play/pause video</button>
-		</>
+		<div className="d-flex justify-content-center flex-column bg--negro">
+			<div className="d-flex flex-column justify-content-center bg--negro">
+				<div className="row d-flex justify-content-center ml-3 mt-2">
+					<h6>Music player react</h6>
+				</div>
+				<div
+					onClick={() => {
+						cambiarSrcAudio(songList[0].url);
+					}}
+					className="row d-flex justify-content-start ml-3 p-1 border-top align-center border-secondary bg--negro">
+					<div className="id">{songList[0].id}</div>
+					<div>{songList[0].name}</div>
+				</div>
+				<div
+					onClick={() => {
+						cambiarSrcAudio(songList[1].url);
+					}}
+					className="row d-flex justify-content-start ml-3 p-1 border-top border-secondary bg--negro">
+					<div className="id">{songList[1].id}</div>
+					<div>{songList[1].name}</div>
+				</div>
+				<div
+					onClick={() => {
+						cambiarSrcAudio(songList[2].url);
+					}}
+					className="row d-flex justify-content-start ml-3 p-1 border-top border-secondary bg--negro">
+					<div className="id">{songList[2].id}</div>
+					<div>{songList[2].name}</div>
+				</div>
+				<div
+					onClick={() => {
+						cambiarSrcAudio(songList[3].url);
+					}}
+					className="row d-flex justify-content-start ml-3 p-1 border-top border-secondary bg--negro">
+					<div className="id">{songList[3].id}</div>
+					<div>{songList[3].name}</div>
+				</div>
+				<div
+					onClick={() => {
+						cambiarSrcAudio(songList[4].url);
+					}}
+					className="row d-flex justify-content-start ml-3 p-1 border-top border-secondary bg--negro">
+					<div className="id">{songList[4].id}</div>
+					<div>{songList[4].name}</div>
+				</div>
+				<div
+					onClick={() => {
+						cambiarSrcAudio(songList[5].url);
+					}}
+					className="row d-flex justify-content-start ml-3 p-1 border-top border-secondary bg--negro">
+					<div className="id">{songList[5].id}</div>
+					<div>{songList[5].name}</div>
+				</div>
+				<div
+					onClick={() => {
+						cambiarSrcAudio(songList[6].url);
+					}}
+					className="row d-flex justify-content-start ml-3 p-1 border-top border-secondary bg--negro">
+					<div className="id">{songList[6].id}</div>
+					<div>{songList[6].name}</div>
+				</div>
+				<div
+					onClick={() => {
+						cambiarSrcAudio(songList[7].url);
+					}}
+					className="row d-flex justify-content-start ml-3 p-1 border-top border-secondary bg--negro">
+					<div className="id">{songList[7].id}</div>
+					<div>{songList[7].name}</div>
+				</div>
+				<div
+					onClick={() => {
+						cambiarSrcAudio(songList[8].url);
+					}}
+					className="row d-flex justify-content-start ml-3 p-1 border-top border-secondary bg--negro">
+					<div className="id">{songList[8].id}</div>
+					<div>{songList[8].name}</div>
+				</div>
+				<div
+					onClick={() => {
+						cambiarSrcAudio(songList[9].url);
+					}}
+					className="row d-flex justify-content-start ml-3 p-1 border-top border-secondary bg--negro">
+					<div className="id">{songList[9].id}</div>
+					<div>{songList[9].name}</div>
+				</div>
+				<div className="row d-flex flex-column justify-content-center ml-3 p-1 border-top border-secondary bg--negro">
+					<audio
+						src="https://assets.breatheco.de/apis/sound/files/mario/songs/castle.mp3"
+						controls
+					/>
+					<button onClick={controlAudio}>Play/pause audio</button>
+				</div>
+			</div>
+		</div>
 	);
 }
