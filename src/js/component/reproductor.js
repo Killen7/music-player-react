@@ -146,52 +146,50 @@ export function Reproductor() {
 
 	let reproductor = useRef();
 
-	let crearLista = () => {
-		songList.map((canciones, index) => {
-			return (
-				<ul key={index} className="list-group list-group-horizontal">
-					<li className="list-group-item">{canciones.id}</li>
-					<li className="list-group-item">{canciones.name}</li>
-				</ul>
-			);
-		});
-	};
-
 	const cambiarSrcAudio = url => {
 		let stringfijo = "https://assets.breatheco.de/apis/sound/";
 		reproductor.current.src = stringfijo + url;
 	};
 
 	return (
-		<div className="container">
-			<div className="lista">
-				{songList.map((canciones, index) => {
-					return (
-						<ul
-							key={index}
-							className="list-group list-group-horizontal">
-							<li className="list-group-item">{canciones.id}</li>
-							<li
-								className="list-group-item"
+		<div>
+			<table className="table table-hover table-dark oscuro">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Nombre</th>
+					</tr>
+				</thead>
+				<tbody>
+					{songList.map((canciones, index) => {
+						return (
+							<tr
+								key={index}
 								onClick={() => {
 									cambiarSrcAudio(canciones.url);
-									reproductor.current.play();
 								}}>
-								{canciones.name}
-							</li>
-						</ul>
-					);
-				})}
+								<th scope="row">{canciones.id}</th>
+								<td>{canciones.name}</td>
+							</tr>
+						);
+					})}
+				</tbody>
+			</table>
+			<div className="oscuro d-flex justify-content-center border-top p-1 text-white botones">
+				<div>
+					<i className="fas fa-backward"></i>
+				</div>
+				<div className="mx-4" onClick={controlPlayPause}>
+					<i className="fas fa-play"></i>
+				</div>
+				<div>
+					<i className="fas fa-forward"></i>
+				</div>
 			</div>
 			<audio
 				ref={reproductor}
 				src="https://assets.breatheco.de/apis/sound/files/mario/songs/castle.mp3"
 			/>
-			<div className="botones row">
-				<button>icon anterior cancion</button>
-				<button onClick={controlPlayPause}>icon de play</button>
-				<button>icon posterior cancion</button>
-			</div>
 		</div>
 	);
 }
