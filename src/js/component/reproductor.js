@@ -144,11 +144,36 @@ export function Reproductor() {
 		}
 	};
 
+	const siguienteCancion = () => {
+		let siguiente;
+		if (cancionActual == 21) {
+			siguiente = 0;
+		} else {
+			siguiente = cancionActual + 1;
+		}
+
+		cambiarSrcAudio(songList[siguiente].url, siguiente);
+	};
+
+	const cancionAnterior = () => {
+		let anterior;
+		if (cancionActual == 0) {
+			anterior = 21;
+		} else {
+			anterior = cancionActual - 1;
+		}
+
+		cambiarSrcAudio(songList[anterior].url, anterior);
+	};
+
 	let reproductor = useRef();
 
-	const cambiarSrcAudio = url => {
+	const [cancionActual, setCancionActual] = useState();
+
+	const cambiarSrcAudio = (url, index) => {
 		let stringfijo = "https://assets.breatheco.de/apis/sound/";
 		reproductor.current.src = stringfijo + url;
+		setCancionActual(index);
 	};
 
 	return (
@@ -166,7 +191,7 @@ export function Reproductor() {
 							<tr
 								key={index}
 								onClick={() => {
-									cambiarSrcAudio(canciones.url);
+									cambiarSrcAudio(canciones.url, index);
 								}}>
 								<th scope="row">{canciones.id}</th>
 								<td>{canciones.name}</td>
@@ -176,13 +201,13 @@ export function Reproductor() {
 				</tbody>
 			</table>
 			<div className="oscuro d-flex justify-content-center border-top p-1 text-white botones">
-				<div>
+				<div onClick={cancionAnterior}>
 					<i className="fas fa-backward"></i>
 				</div>
 				<div className="mx-4" onClick={controlPlayPause}>
 					<i className="fas fa-play"></i>
 				</div>
-				<div>
+				<div onClick={siguienteCancion}>
 					<i className="fas fa-forward"></i>
 				</div>
 			</div>
