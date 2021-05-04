@@ -189,6 +189,9 @@ export function Reproductor() {
 					{songList.map((canciones, index) => {
 						return (
 							<tr
+								className={
+									cancionActual == index ? "active" : ""
+								}
 								key={index}
 								onClick={() => {
 									cambiarSrcAudio(canciones.url, index);
